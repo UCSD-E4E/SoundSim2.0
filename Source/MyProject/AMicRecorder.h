@@ -1,11 +1,11 @@
 
-// MicRecorder.h
+// AMicRecorder.h
 #pragma once
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Sound/SoundSubmix.h"
-#include "MicRecorder.generated.h"
+#include "AMicRecorder.generated.h"
 
 UCLASS()
 class MYPROJECT_API AMicRecorder : public AActor

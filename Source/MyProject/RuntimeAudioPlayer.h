@@ -14,7 +14,7 @@
  * queue/playlist systems.
  */
 UCLASS(Blueprintable)
-class TEST_API ARuntimeAudioPlayer : public AActor
+class MYPROJECT_API ARuntimeAudioPlayer : public AActor
 {
     GENERATED_BODY()
 
