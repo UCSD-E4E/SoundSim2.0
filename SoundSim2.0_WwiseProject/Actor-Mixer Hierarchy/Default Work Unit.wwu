@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{A98821F2-B2FE-4CD4-B58C-43A4F137134B}" SchemaVersion="123">
+	<AudioObjects>
+		<WorkUnit Name="Default Work Unit" ID="{A98821F2-B2FE-4CD4-B58C-43A4F137134B}" PersistMode="Standalone">
+			<ChildrenList>
+				<Sound Name="XC1056475_-_Screaming_Piha_-_Lipaugus_vociferans" ID="{F03189B3-53DC-47DA-8220-7B715D8E6B5C}" ShortID="896560183">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{31362FA2-D63E-4932-B390-94A6D566E104}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8047AC37-8A52-43C1-B093-D5527339C9FA}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="XC1056475_-_Screaming_Piha_-_Lipaugus_vociferans" ID="{D5665CE1-9445-47A5-8C2B-3282971E2B3A}">
+							<Language>SFX</Language>
+							<AudioFile>XC1056475_-_Screaming_Piha_-_Lipaugus_vociferans.WAV</AudioFile>
+							<MediaIDList>
+								<MediaID ID="844165595"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="XC1056475_-_Screaming_Piha_-_Lipaugus_vociferans" ID="{D5665CE1-9445-47A5-8C2B-3282971E2B3A}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+				<Sound Name="XC1073469_-_Screaming_Piha_-_Lipaugus_vociferans" ID="{1D726A45-A376-4FAD-BA19-DE901690E0FC}" ShortID="604283932">
+					<ReferenceList>
+						<Reference Name="Conversion">
+							<ObjectRef Name="Default Conversion Settings" ID="{6D1B890C-9826-4384-BF07-C15223E9FB56}" WorkUnitID="{31362FA2-D63E-4932-B390-94A6D566E104}"/>
+						</Reference>
+						<Reference Name="OutputBus">
+							<ObjectRef Name="Master Audio Bus" ID="{1514A4D8-1DA6-412A-A17E-75CA0C2149F3}" WorkUnitID="{8047AC37-8A52-43C1-B093-D5527339C9FA}"/>
+						</Reference>
+					</ReferenceList>
+					<ChildrenList>
+						<AudioFileSource Name="XC1073469_-_Screaming_Piha_-_Lipaugus_vociferans" ID="{AC2B663B-29DA-461F-A850-9ACF71291822}">
+							<Language>SFX</Language>
+							<AudioFile>XC1073469_-_Screaming_Piha_-_Lipaugus_vociferans.WAV</AudioFile>
+							<MediaIDList>
+								<MediaID ID="963331011"/>
+							</MediaIDList>
+						</AudioFileSource>
+					</ChildrenList>
+					<ActiveSourceList>
+						<ActiveSource Name="XC1073469_-_Screaming_Piha_-_Lipaugus_vociferans" ID="{AC2B663B-29DA-461F-A850-9ACF71291822}" Platform="Linked"/>
+					</ActiveSourceList>
+				</Sound>
+			</ChildrenList>
+		</WorkUnit>
+	</AudioObjects>
+</WwiseDocument>

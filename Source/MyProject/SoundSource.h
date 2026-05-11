@@ -2,20 +2,17 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
-#include "Sound/SoundWaveProcedural.h"
-#include "Components/AudioComponent.h"
 #include "Components/SphereComponent.h"
+#include "AkComponent.h"
+#include "AkAudioEvent.h"
 #include "SoundSource.generated.h"
 
 /**
- * A placeable sound emitter in the world.
+ * A placeable Wwise sound emitter in the world.
  *
  * The queue manager discovers all SoundSource actors in the level,
- * assigns each one a sound clip, and listens for OnSourceFinished
- * to know when to feed it the next clip.
- *
- * The sphere component is just for editor visibility / collision —
- * it makes it easy to see and select sources in the viewport.
+ * assigns each one a Wwise event, and listens for OnSourceFinished
+ * to know when to feed it the next event.
  */
 UCLASS(Blueprintable)
 class MYPROJECT_API ASoundSource : public AActor
@@ -33,21 +30,13 @@ public:
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "SoundSource")
 	USphereComponent* SphereVisual;
 
-	/** Audio component that actually plays spatialized sound */
+	/** Wwise AkComponent that plays spatialized Wwise events */
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "SoundSource")
-	UAudioComponent* AudioComponent;
+	UAkComponent* AkComponent;
 
-	// -----------------------------------------------------------------
-	// Interface for the queue
-	// -----------------------------------------------------------------
-
-	/**
-	 * Assign a sound to this source and start playing it.
-	 * @param Sound       The procedural sound wave to play.
-	 * @param SoundIndex  Index into the queue's LoadedSounds array (for CSV tracking).
-	 */
+	/** Assign a Wwise event to this source and start playback */
 	UFUNCTION(BlueprintCallable, Category = "SoundSource")
-	void AssignSound(USoundWaveProcedural* Sound, int32 SoundIndex);
+	void AssignWwiseEvent(UAkAudioEvent* Event, int32 SoundIndex);
 
 	/** Returns true if this source is currently playing audio */
 	UFUNCTION(BlueprintPure, Category = "SoundSource")
@@ -71,9 +60,6 @@ private:
 	/** Index of the currently assigned sound in the queue's array */
 	int32 CurrentSoundIndex = -1;
 
-	/** Timer handle for the duration-based completion workaround */
-	FTimerHandle DurationTimerHandle;
-
-	/** Called when the duration timer fires — broadcasts OnSourceFinished */
-	void OnDurationElapsed();
+	/** Called when a Wwise event posts an EndOfEvent callback */
+	void OnWwiseEventCallback(EAkCallbackType CallbackType, UAkCallbackInfo* CallbackInfo);
 };

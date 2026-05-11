@@ -1,0 +1,6 @@
+Event	ID	Name			Wwise Object Path	Notes
+	576110585	Test2			\Default Work Unit\Test2	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	963331011	XC1073469_-_Screaming_Piha_-_Lipaugus_vociferans	Y:\Downloads\UCSD\e4e\SoundSim2.0\SoundSim2.0_WwiseProject\.cache\B8\{B8EC28DD-780A-03FD-7C57-9C05723F8AE4}.wem		\Actor-Mixer Hierarchy\Default Work Unit\XC1073469_-_Screaming_Piha_-_Lipaugus_vociferans		11340384
+

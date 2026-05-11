@@ -1,0 +1,47 @@
+{
+ "SoundBanksInfo": {
+  "Platform": "Windows",
+  "BasePlatform": "Windows",
+  "SchemaVersion": "16",
+  "SoundBankVersion": "154",
+  "SoundBanks": [
+   {
+    "Id": "3347320815",
+    "Type": "User",
+    "GUID": "{F3779C4B-1B2D-4B9C-BB0A-8FCDAB89C11A}",
+    "Language": "SFX",
+    "Hash": "{19AA3173-7248-275F-06A1-35ED7CDB9782}",
+    "ObjectPath": "\\SoundBanks\\Default Work Unit\\Test2_SB",
+    "ShortName": "Test2_SB",
+    "Path": "Test2_SB.bnk",
+    "Media": [
+     {
+      "Id": "963331011",
+      "Language": "SFX",
+      "Streaming": "false",
+      "Location": "Memory",
+      "ShortName": "XC1073469_-_Screaming_Piha_-_Lipaugus_vociferans.WAV",
+      "CachePath": "B8/{B8EC28DD-780A-03FD-7C57-9C05723F8AE4}.wem"
+     }
+    ],
+    "Events": [
+     {
+      "Id": "576110585",
+      "Name": "Test2",
+      "ObjectPath": "\\Events\\Default Work Unit\\Test2",
+      "GUID": "{614F02CA-6E59-416F-B154-57E166E1575C}",
+      "DurationType": "OneShot",
+      "DurationMin": "64.287346",
+      "DurationMax": "64.287346",
+      "MediaRefs": [
+       {
+        "Id": "963331011"
+       }
+      ]
+     }
+    ]
+   }
+  ],
+  "FileHash": "{914A74B3-E409-231E-7311-34FC858A6062}"
+ }
+}

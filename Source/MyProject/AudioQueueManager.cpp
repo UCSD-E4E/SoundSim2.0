@@ -17,21 +17,20 @@ AAudioQueueManager::AAudioQueueManager()
 
 void AAudioQueueManager::BeginPlay()
 {
-    // Skip ARuntimeAudioPlayer::BeginPlay's auto-play behavior —
-    // we don't want the parent class playing audio through its own
-    // AudioComponent. We call AActor::BeginPlay directly.
+    // Skip ARuntimeAudioPlayer::BeginPlay's auto-play behavior so queue control
+    // is responsible for starting playback.
     AActor::BeginPlay();
 
     UE_LOG(LogTemp, Warning, TEXT("AudioQueueManager: BeginPlay"));
 
-    // Auto-start if a folder path is configured
-    if (!AudioFolderPath.IsEmpty())
+    // Auto-start if Wwise events are configured
+    if (WwiseEvents.Num() > 0)
     {
         StartQueue();
     }
     else
     {
-        UE_LOG(LogTemp, Warning, TEXT("AudioQueueManager: No AudioFolderPath set, waiting for manual StartQueue()"));
+        UE_LOG(LogTemp, Warning, TEXT("AudioQueueManager: No Wwise events configured, waiting for manual StartQueue()"));
     }
 }
 
@@ -81,12 +80,9 @@ void AAudioQueueManager::StartQueue()
         Source->OnSourceFinished.AddDynamic(this, &AAudioQueueManager::OnSourceFinished);
     }
 
-    // --- Step 3: Load all WAVs from the configured folder ---
-    LoadWavsFromFolder(AudioFolderPath, bRecursive);
-
-    if (LoadedSounds.Num() == 0)
+    if (WwiseEvents.Num() == 0)
     {
-        UE_LOG(LogTemp, Error, TEXT("AudioQueueManager: No sounds loaded from %s"), *AudioFolderPath);
+        UE_LOG(LogTemp, Error, TEXT("AudioQueueManager: No WwiseEvents are assigned for queue playback"));
         return;
     }
 
@@ -108,7 +104,7 @@ void AAudioQueueManager::StartQueue()
     }
 
     UE_LOG(LogTemp, Warning, TEXT("AudioQueueManager: Queue started — %d sounds across %d sources"),
-           LoadedSounds.Num(), Sources.Num());
+           WwiseEvents.Num(), Sources.Num());
 }
 
 void AAudioQueueManager::StopQueue()
@@ -123,9 +119,14 @@ void AAudioQueueManager::StopQueue()
     // Stop all sources
     for (ASoundSource* Source : Sources)
     {
-        if (Source && Source->AudioComponent)
+        if (!Source)
         {
-            Source->AudioComponent->Stop();
+            continue;
+        }
+
+        if (Source->AkComponent)
+        {
+            Source->AkComponent->Stop();
         }
     }
 
@@ -182,15 +183,20 @@ void AAudioQueueManager::AssignNextSound(ASoundSource* Source)
     int32 SoundIndex = PlayOrder[PlayOrderPosition];
     PlayOrderPosition++;
 
-    // Assign the sound to the source
-    USoundWaveProcedural* Sound = LoadedSounds[SoundIndex];
-    Source->AssignSound(Sound, SoundIndex);
+    UAkAudioEvent* Event = WwiseEvents.IsValidIndex(SoundIndex) ? WwiseEvents[SoundIndex] : nullptr;
+    Source->AssignWwiseEvent(Event, SoundIndex);
 
     TotalAssignments++;
 
+    FString AssignedName = TEXT("Unknown");
+    if (WwiseEvents.IsValidIndex(SoundIndex) && WwiseEvents[SoundIndex])
+    {
+        AssignedName = WwiseEvents[SoundIndex]->GetName();
+    }
+
     UE_LOG(LogTemp, Log, TEXT("AudioQueueManager: Assigned sound %d (%s) to source [%s] — assignment #%d"),
            SoundIndex,
-           *FPaths::GetCleanFilename(LoadedFilePaths[SoundIndex]),
+           *AssignedName,
            *Source->GetName(),
            TotalAssignments);
 }
@@ -205,7 +211,8 @@ void AAudioQueueManager::BuildPlayOrder()
     PlayOrderPosition = 0;
 
     // Fill with sequential indices: 0, 1, 2, ...
-    for (int32 i = 0; i < LoadedSounds.Num(); i++)
+    int32 NumItems = WwiseEvents.Num();
+    for (int32 i = 0; i < NumItems; i++)
     {
         PlayOrder.Add(i);
     }
@@ -307,12 +314,12 @@ void AAudioQueueManager::WriteMultiSourceCsvRow()
         // Source world position
         FVector Pos = Source->GetActorLocation();
 
-        // What audio file this source is currently playing
+        // What audio file or event this source is currently playing
         FString AudioFile = TEXT("None");
         int32 SoundIdx = Source->GetCurrentSoundIndex();
-        if (SoundIdx >= 0 && SoundIdx < LoadedFilePaths.Num())
+        if (SoundIdx >= 0 && WwiseEvents.IsValidIndex(SoundIdx) && WwiseEvents[SoundIdx])
         {
-            AudioFile = FPaths::GetCleanFilename(LoadedFilePaths[SoundIdx]);
+            AudioFile = WwiseEvents[SoundIdx]->GetName();
         }
 
         AllRows += FString::Printf(TEXT("%s,%.2f,%s,%.2f,%.2f,%.2f,%s\n"),

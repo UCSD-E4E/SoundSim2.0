@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{B515749E-DD4B-44A9-9301-A31AF7CA27A7}" SchemaVersion="123">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{B515749E-DD4B-44A9-9301-A31AF7CA27A7}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="Test1" ID="{E75F0794-4E0A-4F44-A347-86BF6C77BBA5}">
+					<ChildrenList>
+						<Action Name="" ID="{E0A8B9FB-E6CC-4348-983F-5A3FC5FE3FA7}" ShortID="935165271">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="XC1056475_-_Screaming_Piha_-_Lipaugus_vociferans" ID="{F03189B3-53DC-47DA-8220-7B715D8E6B5C}" WorkUnitID="{A98821F2-B2FE-4CD4-B58C-43A4F137134B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+				<Event Name="Test2" ID="{614F02CA-6E59-416F-B154-57E166E1575C}">
+					<ChildrenList>
+						<Action Name="" ID="{5542E141-02FA-4BD0-B490-FD6BB6262ABB}" ShortID="1039969931">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="XC1073469_-_Screaming_Piha_-_Lipaugus_vociferans" ID="{1D726A45-A376-4FAD-BA19-DE901690E0FC}" WorkUnitID="{A98821F2-B2FE-4CD4-B58C-43A4F137134B}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

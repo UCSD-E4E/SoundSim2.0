@@ -6,14 +6,13 @@
 #include "AudioQueueManager.generated.h"
 
 /**
- * Discovers all SoundSource actors in the level, loads a folder of WAVs,
- * and distributes them across the sources sequentially.
+ * Discovers all SoundSource actors in the level and distributes
+ * Wwise events across the sources sequentially.
  *
- * When a source finishes its clip, it broadcasts OnSourceFinished and
- * this manager assigns it the next clip in the queue.
+ * When a source finishes its event, it broadcasts OnSourceFinished and
+ * this manager assigns it the next event in the queue.
  *
- * Inherits from ARuntimeAudioPlayer to reuse WAV loading, parsing,
- * bit-depth conversion, and CSV recording.
+ * Inherits from ARuntimeAudioPlayer to reuse Wwise playback and CSV recording.
  */
 UCLASS(Blueprintable)
 class MYPROJECT_API AAudioQueueManager : public ARuntimeAudioPlayer
@@ -27,10 +26,6 @@ public:
     // Configuration (set in Details panel)
     // -----------------------------------------------------------------
 
-    /** Folder containing WAV files to load and distribute */
-    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Queue")
-    FString AudioFolderPath;
-
     /** If true, restart from the beginning when all sounds have been played */
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Queue")
     bool bLoopQueue = false;
@@ -39,9 +34,9 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Queue")
     bool bRandomize = false;
 
-    /** If true, load WAVs recursively from subfolders */
+    /** List of Wwise events for queue playback */
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Queue")
-    bool bRecursive = true;
+    TArray<UAkAudioEvent*> WwiseEvents;
 
     /** If true, automatically start CSV recording on BeginPlay */
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Queue")
@@ -55,11 +50,11 @@ public:
     UPROPERTY(BlueprintReadOnly, Category = "Queue")
     TArray<ASoundSource*> Sources;
 
-    /** The next index in LoadedSounds to assign */
+    /** The next index in the event play order to assign */
     UPROPERTY(BlueprintReadOnly, Category = "Queue")
     int32 NextSoundIndex = 0;
 
-    /** Total number of sounds assigned so far (useful for stats/logging) */
+    /** Total number of events assigned so far (useful for stats/logging) */
     UPROPERTY(BlueprintReadOnly, Category = "Queue")
     int32 TotalAssignments = 0;
 
@@ -102,7 +97,7 @@ private:
     FTimerHandle MultiSourceCsvTimerHandle;
     bool bMultiSourceCsvActive = false;
 
-    /** The order in which sounds will be assigned (indices into LoadedSounds) */
+    /** The order in which events will be assigned (indices into WwiseEvents) */
     TArray<int32> PlayOrder;
 
     /** Current position within PlayOrder */
