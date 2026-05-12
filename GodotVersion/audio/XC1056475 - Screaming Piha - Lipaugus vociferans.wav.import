@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cas8qdyuuto5j"
+path="res://.godot/imported/XC1056475 - Screaming Piha - Lipaugus vociferans.wav-48d693e21130332591a1597750485561.sample"
+
+[deps]
+
+source_file="res://audio/XC1056475 - Screaming Piha - Lipaugus vociferans.wav"
+dest_files=["res://.godot/imported/XC1056475 - Screaming Piha - Lipaugus vociferans.wav-48d693e21130332591a1597750485561.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

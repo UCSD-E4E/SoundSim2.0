@@ -1,0 +1,10 @@
+63f7b34db8d8cdea90c76aacccf841ec
+::res://::1778528332
+Main.gd::GDScript::6128090402567796953::1778527928::0::1::::<>Node2D<><>0<>0<><>::
+main.tscn::PackedScene::7463292579632432288::1778527828::0::1::::<><><>0<>0<><>::uid://dd1mve7hldi0m::::res://MicRecorder.gd<>uid://bblnybuq6hj1r::::res://RuntimeAudioPlayer.gd<>uid://ctkq0vfxujwgn::::res://Main.gd
+MicRecorder.gd::GDScript::7424268769044172454::1778528101::0::1::::<>AudioStreamPlayer<><>0<>0<><>::
+README.md::TextFile::-1::1778527248::0::1::::<><><>0<>0<><>::
+default_bus_layout.tres::AudioBusLayout::6384063557098935293::1778527638::0::1::::<><><>0<>0<><>::
+RuntimeAudioPlayer.gd::GDScript::2480149946773590609::1778528123::0::1::::<>AudioStreamPlayer<><>0<>0<><>::
+::res://audio/::1778528332
+XC1056475 - Screaming Piha - Lipaugus vociferans.wav::AudioStreamWAV::4812032596004605333::1778528295::1778528336::1::::<><><>0<>0<>c80672d8938a88f30395c3eaa99fa635<>res://.godot/imported/XC1056475 - Screaming Piha - Lipaugus vociferans.wav-48d693e21130332591a1597750485561.sample::

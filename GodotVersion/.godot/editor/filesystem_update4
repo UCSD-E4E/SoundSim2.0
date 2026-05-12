@@ -1,0 +1,5 @@
+res://default_bus_layout.tres
+res://main.tscn
+res://Main.gd
+res://MicRecorder.gd
+res://RuntimeAudioPlayer.gd
